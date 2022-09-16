@@ -2,6 +2,7 @@ plugins {
     id 'eclipse'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+' // dependencies loaded from upper-level settings.gradle
 }
 
 version = '1.0'
@@ -27,7 +28,8 @@ minecraft {
     // Use non-default mappings at your own risk. They may not always work.
     // Simply re-run your setup task after changing the mappings to update your workspace.
 //    mappings channel: 'parchment', version: '2022.08.21-1.19.2'
-     mappings channel: 'official', version: '1.19.2'
+//     mappings channel: 'official', version: '1.19.2'
+    mappings channel: 'parchment', version: '2022.08.21-1.19.2'
 
     // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg') // Currently, this location cannot be changed from the default.
 
@@ -35,7 +37,7 @@ minecraft {
     // These can be tweaked, removed, or duplicated as needed.
     runs {
         client {
-            workingDirectory project.file('run')
+            workingDirectory project.file('runClient')
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -56,11 +58,14 @@ minecraft {
                 SuperFactoryManager {
                     source project(':SuperFactoryManager').sourceSets.main
                 }
+                EnchantmentRequirements {
+                    source project(':EnchantmentRequirements').sourceSets.main
+                }
             }
         }
 
         server {
-            workingDirectory project.file('run')
+            workingDirectory project.file('runServer')
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -71,6 +76,9 @@ minecraft {
             mods {
                 SuperFactoryManager {
                     source project(':SuperFactoryManager').sourceSets.main
+                }
+                EnchantmentRequirements {
+                    source project(':EnchantmentRequirements').sourceSets.main
                 }
             }
         }
@@ -79,7 +87,7 @@ minecraft {
         // By default, the server will crash when no gametests are provided.
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
-            workingDirectory project.file('run')
+            workingDirectory project.file('runGameTest')
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -91,11 +99,14 @@ minecraft {
                 SuperFactoryManager {
                     source project(':SuperFactoryManager').sourceSets.main
                 }
+                EnchantmentRequirements {
+                    source project(':EnchantmentRequirements').sourceSets.main
+                }
             }
         }
 
         data {
-            workingDirectory project.file('run')
+            workingDirectory project.file('runData')
 
             property 'forge.logging.markers', 'REGISTRIES'
 
@@ -107,6 +118,9 @@ minecraft {
             mods {
                 SuperFactoryManager {
                     source project(':SuperFactoryManager').sourceSets.main
+                }
+                EnchantmentRequirements {
+                    source project(':EnchantmentRequirements').sourceSets.main
                 }
             }
         }
@@ -132,6 +146,7 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.19.2-43.1.2'
     implementation project(':SuperFactoryManager')
+    implementation project(':EnchantmentRequirements')
     // Real mod deobf dependency examples - these get remapped to your current mappings
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api") // Adds JEI API as a compile dependency
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency

@@ -8,4 +8,5 @@ pluginManagement {
 
 rootProject.name = 'myrootproject'
 include 'SuperFactoryManager'
+include 'EnchantmentRequirements'
 include 'workspace'

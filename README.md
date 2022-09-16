@@ -42,7 +42,10 @@ See also: [McJty's workspace](https://github.com/McJtyMods/MultiWorkspace)
    }
    ```
    
+   Optionally, also change the workingDirectory to be different for each run config.
+   
    Don't forget to also remove the `examplemod` blocks.
+
 10. Inside the same build.gradle from the previous step, go to the dependencies block and add the following:
 
    ```gradle
@@ -124,3 +127,49 @@ Process finished with exit code 1
 
 You probably updated your Forge version without running `genIntellijRuns` again.
 
+---
+
+`Missing 'minecraft' dependency.`
+
+Make sure to edit `myworkspace/settings.gradle` to include all your mods.
+
+---
+
+> No errors, but some mods not being loaded
+
+Make sure to run `genIntellijRuns` after adding new mods to the workspace.
+
+
+
+## Starting a new mod
+
+1. Download the Forge MDK for the version of forge your projects are using from [here](https://files.minecraftforge.net)
+2. Create a [new GitHub repo](https://github.com/new) for your mod
+3. Clone the new repo to the workspace root
+4. Copy to the cloned repo the following files from the MDK
+   - gradle/
+   - src/
+   - .gitattributes
+   - .gitignore
+   - build.gradle
+   - gradle.properties
+   - gradlew
+   - gradlew.bat
+   - settings.gradle
+5. Edit `myworkspace/mynewmod/build.gradle` to have the appropriate details for the new mod (version, group, archiveBaseName)
+6. Edit `myworkspace/workspace/build.gradle` `minecraft.runs` and `dependencies` blocks to include the new mod.
+7. Edit `myworkspace/settings.gradle` to include the new mod
+8. Run `genIntellijRuns`
+
+## FAQ
+
+> Do all the mods have to use the same Forge version?
+
+I have no idea.
+
+---
+
+> There's a bunch of duplicate stuff in the double-shift menu when searching now, how2fix?
+
+Looks like IDEA is indexing the mappings for each subproject separately.  
+Idk how to fix.
