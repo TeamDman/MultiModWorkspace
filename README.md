@@ -29,6 +29,8 @@ See also: [McJty's workspace](https://github.com/McJtyMods/MultiWorkspace)
    ```
 
    You should also copy and custom stuff from any of your individual mods' `settings.gradle` file, since only the root one will be loaded.
+   Your individual mods should still keep the `settings.gradle` file so they can be built independently.
+
 9. In `myworkspace/workspace/build.gradle` inside each of the `minecraft.runs.*.mods` blocks, add a reference to each of your mods.
 
    Example:
@@ -173,3 +175,10 @@ I have no idea.
 
 Looks like IDEA is indexing the mappings for each subproject separately.  
 Idk how to fix.
+
+---
+
+> What if two mods both load JEI in their dependencies?
+
+Make sure they're the same version I guess?  
+I'm not having issues with it.
