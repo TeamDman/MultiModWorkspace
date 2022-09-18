@@ -143,7 +143,37 @@ Make sure to view the full gradle logs, sometimes there is more information ther
 
 Make sure to run `genIntellijRuns` after adding new mods to the workspace.
 
+---
 
+```log
+[17:34:15] [modloading-worker-0/ERROR] [ne.mi.fm.ja.FMLModContainer/LOADING]: Failed to create mod instance. ModID: geoscopes, class ca.teamdman.geoscopes.Geoscopes
+java.lang.IllegalAccessException: class net.minecraftforge.fml.javafmlmod.FMLModContainer (in module javafmllanguage) cannot access a member of class ca.teamdman.geoscopes.Geoscopes (in module geoscopes) with modifiers "private"
+	at jdk.internal.reflect.Reflection.newIllegalAccessException(Reflection.java:392) ~[?:?] {}
+	at java.lang.reflect.AccessibleObject.checkAccess(AccessibleObject.java:674) ~[?:?] {}
+	at java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:489) ~[?:?] {}
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:480) ~[?:?] {}
+	at net.minecraftforge.fml.javafmlmod.FMLModContainer.constructMod(FMLModContainer.java:68) ~[javafmllanguage-1.19.2-43.1.2.jar%23184!/:?] {}
+	at net.minecraftforge.fml.ModContainer.lambda$buildTransitionHandler$10(ModContainer.java:121) ~[fmlcore-1.19.2-43.1.2.jar%23187!/:?] {}
+	at java.util.concurrent.CompletableFuture$AsyncRun.run(CompletableFuture.java:1804) [?:?] {}
+	at java.util.concurrent.CompletableFuture$AsyncRun.exec(CompletableFuture.java:1796) [?:?] {}
+	at java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:373) [?:?] {}
+	at java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1182) [?:?] {}
+	at java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655) [?:?] {}
+	at java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622) [?:?] {}
+	at java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165) [?:?] {}
+```
+
+Make sure your `mods.toml` file uses `kotlinforforge` instead of `javafml` if it's a Kotlin mod [ref](https://github.com/thedarkcolour/KotlinForForge).
+
+---
+
+```log
+[17:45:52] [Render thread/FATAL] [ne.mi.fm.ModLoader/CORE]: Error during pre-loading phase
+net.minecraftforge.fml.ModLoadingException: Mod File main needs language provider kotlinforforge:43 or above to load
+§7We have found 3.7.1
+```
+
+Make sure to edit the `mods.toml` `loaderVersion` property if using Kotlin [ref](https://github.com/thedarkcolour/KotlinForForge)
 
 ## Starting a new mod
 
