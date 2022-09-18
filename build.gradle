@@ -1,0 +1,12 @@
+// necessary to get Kotlin for Forge to work
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.0"
+        // OPTIONAL Kotlin Serialization plugin
+        classpath 'org.jetbrains.kotlin:kotlin-serialization:1.7.0'
+    }
+}

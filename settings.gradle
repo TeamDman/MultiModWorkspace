@@ -6,7 +6,8 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'myrootproject'
+rootProject.name = 'TeamyWorkspace'
 include 'SuperFactoryManager'
 include 'EnchantmentRequirements'
+include 'Geoscopes'
 include 'workspace'
