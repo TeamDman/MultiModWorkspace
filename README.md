@@ -135,6 +135,8 @@ You probably updated your Forge version without running `genIntellijRuns` again.
 
 Make sure to edit `myworkspace/settings.gradle` to include all your mods.
 
+Make sure to view the full gradle logs, sometimes there is more information there.
+
 ---
 
 > No errors, but some mods not being loaded
