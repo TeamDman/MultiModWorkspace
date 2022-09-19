@@ -175,6 +175,24 @@ net.minecraftforge.fml.ModLoadingException: Mod File main needs language provide
 
 Make sure to edit the `mods.toml` `loaderVersion` property if using Kotlin [ref](https://github.com/thedarkcolour/KotlinForForge)
 
+---
+
+```log
+[17:50:40] [Render thread/FATAL] [ne.mi.fm.ModLoader/CORE]: Error during pre-loading phase
+net.minecraftforge.fml.ModLoadingException: Mod File main needs language provider kotlinforforge:3 or above to load
+§7We have found none
+	at net.minecraftforge.fml.ModLoadingException.lambda$fromEarlyException$0(ModLoadingException.java:50) ~[fmlcore-1.19.2-43.1.2.jar%23187!/:?] {}
+	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197) ~[?:?] {}
+```
+
+Make sure `myworkspace/workspace/build.gradle` has the Kotlin plugins and stuff added as well [ref](https://github.com/thedarkcolour/KotlinForForge).
+
+---
+
+> Kotlin mods not building when running `workspace runClient`
+
+Edit the run config to Build Project instead of just Build
+
 ## Starting a new mod
 
 1. Download the Forge MDK for the version of forge your projects are using from [here](https://files.minecraftforge.net)
@@ -199,7 +217,7 @@ Make sure to edit the `mods.toml` `loaderVersion` property if using Kotlin [ref]
 
 > Do all the mods have to use the same Forge version?
 
-I have no idea.
+I accidentally had mods using different forge patch versions, so apparently you CAN have different versions.
 
 ---
 
